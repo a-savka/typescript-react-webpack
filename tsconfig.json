@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./release/",
+    "jsx": "react",
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "target": "es5"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
