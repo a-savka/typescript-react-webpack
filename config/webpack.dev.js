@@ -1,12 +1,17 @@
-var path = require("path");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const parameters = require('./parameters');
 
-var config = {
+const {
+  ROOT
+} = parameters();
+
+const config = {
 
   entry: "./src/app.tsx",
 
   output: {
-    path: path.resolve(__dirname, "release"),
+    path: path.resolve(ROOT, "release"),
     filename: "bundle.js"
   },
 

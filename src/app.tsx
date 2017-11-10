@@ -3,6 +3,6 @@ import * as ReactDOM from "react-dom";
 import Hello from "./components/Hello";
 
 ReactDOM.render(
-  <Hello name="Willson" />,
+  <Hello name="Santa" />,
   document.getElementById("root")
 )
