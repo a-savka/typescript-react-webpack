@@ -1,45 +1,8 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const parameters = require('./parameters');
+const webpackMerge = require('webpack-merge');
+const commonConfigFactory = require('./webpack.common');
 
-const {
-  ROOT
-} = parameters();
+module.exports = function() {
 
-const config = {
+  return webpackMerge(commonConfigFactory(), {});
 
-  entry: "./src/app.tsx",
-
-  output: {
-    path: path.resolve(ROOT, "release"),
-    filename: "bundle.js"
-  },
-
-  resolve: {
-    extensions: [".ts", ".tsx", ".js"]
-  },
-
-  module: {
-
-    loaders: [
-      {
-        test: /\.tsx?$/,
-        loader: "awesome-typescript-loader",
-        exclude: "/node_modules/"
-      }
-    ]
-
-  },
-
-  plugins: [
-
-    new HtmlWebpackPlugin({
-      template: './index.html',
-      inject: 'body'
-    })
-
-  ]
-
-}
-
-module.exports = config;
+};

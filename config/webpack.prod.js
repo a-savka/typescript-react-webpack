@@ -1,51 +1,20 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const parameters = require('./parameters');
 const webpack = require('webpack');
+const webpackMerge = require('webpack-merge');
+const commonConfigFactory = require('./webpack.common');
 
-const {
-  ROOT
-} = parameters();
+module.exports = function() {
 
-const config = {
+  return webpackMerge(commonConfigFactory(), {
 
-  entry: "./src/app.tsx",
+    plugins: [
 
-  output: {
-    path: path.resolve(ROOT, "release"),
-    filename: "bundle.js"
-  },
+      new webpack.optimize.UglifyJsPlugin({
+        include: /\.js$/,
+        minimize: true
+      })
 
-  resolve: {
-    extensions: [".ts", ".tsx", ".js"]
-  },
-
-  module: {
-
-    loaders: [
-      {
-        test: /\.tsx?$/,
-        loader: "awesome-typescript-loader",
-        exclude: "/node_modules/"
-      }
     ]
 
-  },
+  });
 
-  plugins: [
-
-    new HtmlWebpackPlugin({
-      template: './index.html',
-      inject: 'body'
-    }),
-
-    new webpack.optimize.UglifyJsPlugin({
-      include: /\.js$/,
-      minimize: true
-    })
-
-  ]
-
-}
-
-module.exports = config;
+};
