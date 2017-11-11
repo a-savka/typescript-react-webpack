@@ -1,6 +1,8 @@
 
 import * as React from "react";
 
+require('./hello.scss');
+
 interface HelloProps {
   name: string;
 }
@@ -8,7 +10,7 @@ interface HelloProps {
 class Hello extends React.Component<HelloProps, {}> {
 
   public render() {
-    return <div>Hello, {this.props.name}</div>;
+    return <div className='header'>Hello, {this.props.name}</div>;
   }
 
 }

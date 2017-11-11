@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const parameters = require('./parameters');
 
 const {
@@ -28,6 +29,11 @@ module.exports = function() {
           test: /\.tsx?$/,
           loader: "awesome-typescript-loader",
           exclude: "/node_modules/"
+        },
+
+        {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract('css-loader!sass-loader')
         }
       ]
 
@@ -38,6 +44,10 @@ module.exports = function() {
       new HtmlWebpackPlugin({
         template: './index.html',
         inject: 'body'
+      }),
+
+      new ExtractTextPlugin('style.css', {
+        allChunks: true
       })
 
     ]
